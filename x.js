@@ -1,13 +1,14 @@
-// let courses = [
-//   { id: 1, name: "React" },
-//   { id: 2, name: "Angular" },
-//   { id: 3, name: "Vue" },
-// ];
+const Joi = require("joi");
+let util = require("util");
 
-let courses = ["React", "Angular", "Vue"];
+const validateCustomer = function (customer) {
+  const schema = Joi.object({
+    name: Joi.string().min(5).max(50).required(),
+  });
 
-let course = { id: 1, name: "React" };
+  return schema.validate(customer);
+};
 
-let index = courses.indexOf("Vue");
+const obj = validateCustomer({ name: "" });
 
-console.log(index);
+console.log(obj);
